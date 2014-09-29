@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+
+\usepackage{listings}
+\lstloadlanguages{Ruby}
+%\lstset{%
+%basicstyle=\ttfamily\color{black},
+%commentstyle = \ttfamily\color{red},
+%keywordstyle=\ttfamily\color{blue},
+%stringstyle=\color{orange}}
+%\usepackage[dvipsnames]{xcolor}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{hyperref}
+\usepackage{esint}
+\geometry{top=2cm} %поле сверху
+\geometry{bottom=2cm} %поле снизу
+\geometry{left=2cm} %поле справа
+\geometry{right=2cm}
+\usepackage{graphicx}
+
+%\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+
+\begin{document}
+
+
+\section{Задачи}
+\subsection{Теория}
+\begin{enumerate}
+\item Объем сообщения, содержащего $4096$ символов, равен $\frac{1}{512}$ мегабайта. Какова мощность алфавита, с помощью которого записано это сообщение?
+\item Вероятность появления символа @ в некотором тексте равна $\frac{1}{8}$. Сколько битов информации несет сообщение о том, что очередной символ текста --- @?
+\item В некотором алфавите всего 4 символа: гласные О и А, согласные Ш и Щ. Вероятности их появления в тексте: А --- 0.35; О --- 0.4; Ш --- 0.1; Щ --- 0.15. Сколько битов информации несет сообщение о том, что очередной символ текста --- согласная? 
+\item Автобус №25 ходит в два раза чаще, чем автобус №13. Сообщение о том, что к остановке подошел автобус №25 , несет 4 бита информации. Сколько битов информации в сообщении: "К остановке подошел автобус №13"?
+\end{enumerate}
+
+\subsection{Практика}
+\begin{enumerate}
+\item Заданы первый и второй элементы прогрессии. Написать программу, которая вычислит N-ый элемент геометрической и арифметической прогрессий, порожденный данными элементами.
+\item Задано одно число в десятичной системе счисления. Требуется написать программу, которая вычислит количество единиц, содержащихся в двоичной записи этого числа.
+\item Даны $a$ и $b$. Вычислить НОД($a$, $b$) и НОК($a$, $b$).
+\item Дано одно число --- $N$. Нужно посчитать максимальное количество ферзей, которых можно расставить на шахматной доске размером NxN. Задача взята отсюда \url{<http://acmp.ru/?main=task&id_task=86>}, там же можно почитать обсуждение, чтобы понять, как решить задачу.
+
+
+\end{enumerate}
+
+\end{document}
