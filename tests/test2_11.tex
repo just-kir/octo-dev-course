@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+
+\usepackage{listings}
+\lstloadlanguages{Ruby}
+%\lstset{%
+%basicstyle=\ttfamily\color{black},
+%commentstyle = \ttfamily\color{red},
+%keywordstyle=\ttfamily\color{blue},
+%stringstyle=\color{orange}}
+%\usepackage[dvipsnames]{xcolor}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{hyperref}
+\usepackage{esint}
+\geometry{top=2cm} %поле сверху
+\geometry{bottom=2cm} %поле снизу
+\geometry{left=2cm} %поле справа
+\geometry{right=2cm}
+\usepackage{graphicx}
+
+%\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+
+\itemsep=0pt
+
+\begin{document}
+
+
+\section*{Задачи}
+\subsection*{Теория}
+\begin{enumerate}
+\item Документ объёмом 10 Мбайт можно передать с одного компьютера на другой двумя способами:
+	\begin{itemize}
+			\vspace*{-2ex}
+		    \setlength{\itemsep}{0pt}%
+		    \setlength{\parskip}{0pt}%
+		\item[А)] сжать архиватором, передать архив по каналу связи, распаковать; 
+		\item[Б)] передать по каналу связи без использования архиватора.
+	\end{itemize}
+\vspace*{-1.7ex}
+Какой способ быстрее и насколько, если
+	\begin{itemize}
+			\vspace*{-1.5ex}
+			\setlength{\itemsep}{0pt}%
+		    \setlength{\parskip}{0pt}%
+		\item средняя скорость передачи данных по каналу связи составляет $2^{20}$ бит в секунду,
+		\item объём сжатого архиватором документа равен 30\% от исходного,
+		\item время, требуемое на сжатие документа, - 12 секунд, на распаковку - 2 секунды?
+	\end{itemize}
+
+\item Книжка, в которой 10 страниц текста (каждая страница содержит 32 строки по 32 символа в каждой), закодирована в 8-битной кодировке. Сколько секунд потребуется для передачи этой книжки по линии связи со скоростью 2 Кбайт в секунду?
+\item Какое наименьшее число символов должно быть в алфавите, чтобы с помощью всевозможных 4-буквенных слов, состоящих из символов данного алфавита, можно было передать не менее 10 различных сообщений? 
+\item В соревнованиях по ориентированию участвуют 430 спортсменов. Специальное устройство регистрирует финиш каждого из участников, записывая его номер с использованием минимально возможного количества битов, одинакового для каждого спортсмена. Каков будет информационный объём сообщения (в байтах), записанного устройством, после того как финишируют 400 спортсменов?
+\end{enumerate}
+
+\subsection*{Практика}
+\begin{enumerate}
+\item ??
+
+
+\end{enumerate}
+
+\end{document}
