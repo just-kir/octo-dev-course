@@ -1,0 +1,129 @@
+%%% Поля и разметка страницы %%%
+\documentclass[a4paper,12pt]{article}
+\usepackage{lscape}		% Для включения альбомных страниц
+\pagestyle{empty}		% Не нумеровать
+\usepackage[left=2cm,right=2cm,
+top=3cm,bottom=1.5cm,bindingoffset=0cm]{geometry} % поля
+
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc}				% Поддержка русских букв
+\usepackage[utf8]{inputenc}				% Кодировка utf8
+\usepackage[english, russian]{babel}	% Языки: русский, английский
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst} % Красная строка
+
+\usepackage{enumitem}
+\usepackage{verbatim}
+
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%%% Таблицы %%%
+\usepackage{longtable}					% Длинные таблицы
+\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+\usepackage{multicol}
+
+%%% Общее форматирование
+\usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
+\usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}
+
+%%% Библиография %%%
+\usepackage{cite} % Красивые ссылки на литературу
+
+%%% Гиперссылки %%%
+\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+\definecolor{linkcolor}{rgb}{0.9,0,0}
+\definecolor{citecolor}{rgb}{0,0.6,0}
+\definecolor{urlcolor}{rgb}{0,0,1}
+\hypersetup{
+    colorlinks, linkcolor={linkcolor},
+    citecolor={citecolor}, urlcolor={urlcolor}
+}
+
+%%% Изображения %%%
+\usepackage{graphicx}		% Подключаем пакет работы с графикой
+\graphicspath{{images/}}	% Пути к изображениям
+
+%%% Выравнивание и переносы %%%
+\sloppy					% Избавляемся от переполнений
+\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+
+%%% Библиография %%%
+\makeatletter
+\bibliographystyle{utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Колонтитулы %%%
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\renewcommand{\@oddhead}{\it \vbox{\hbox to \textwidth%
+		{\hfil Информатика и ИКТ. 11 класс\hfil\strut}\hbox to \textwidth%
+		{\today \hfil Физтех-лицей\strut}\hrule}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\Large{\textbf{Домашнее задание на 28.11.2014}}
+\end{center}
+\section*{1 вариант} 
+
+\subsection*{1}
+Сколько единиц в двоичной записи числа 4095? 
+
+\subsection*{2}
+Дано: $a = D7_{16}$ и $b = 331_8$. Какое из чисел с, записанных в двоичной системе счисления, удовлетворяет  неравенству $a < c < b$?
+\begin{itemize}
+ \item $11011001_2$
+ \item $11011100_2$
+ \item $11010111_2$
+ \item $11011000_2$
+\end{itemize}
+
+\subsection*{3}
+Для хранения целого числа \textit{со знаком} используется один байт. Сколько единиц содержит внутреннее представление числа $(-78)$? 
+
+\subsection*{4}
+Сколько единиц в двоичной записи числа  $4^{2014} + 2^{2015} - 8$?
+
+\subsection*{5*}
+Укажите все основания систем счисления, в которых запись числа $23$ оканчивается на $2$.
+
+\subsection*{6}
+Решите уравнение $60_8 + x  = 120_7$. Ответ запишите в шестнадцатеричной системе счисления.
+
+\newpage
+\section*{2 вариант} 
+
+\subsection*{1}
+Сколько единиц в двоичной записи числа 2049? 
+
+\subsection*{2}
+Для хранения целого числа со знаком используется один байт. Сколько единиц содержит внутреннее представление числа $(-35)$?
+
+\subsection*{3}
+Переведите $24.17_{10}$ в двоичную систему счисления.
+
+\subsection*{4}
+Сколько единиц в двоичной записи числа $4^{2016}  + 2^{2018} - 8^{600} + 6$?
+
+\subsection*{5}
+Укажите через запятую в порядке возрастания все десятичные числа, не превосходящие 25, запись которых в системе счисления с основанием четыре оканчивается на 11?  
+
+\subsection*{6*}
+Найдите все основания систем счисления, в которых запись числа 31 оканчивается на 11.
+\end{document}

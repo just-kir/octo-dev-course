@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+
+\usepackage{listings}
+%\lstloadlanguages{Ruby}
+%\lstset{%
+%basicstyle=\ttfamily\color{black},
+%commentstyle = \ttfamily\color{red},
+%keywordstyle=\ttfamily\color{blue},
+%stringstyle=\color{orange}}
+%\usepackage[dvipsnames]{xcolor}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{hyperref}
+\usepackage{esint}
+\geometry{top=2cm} %поле сверху
+\geometry{bottom=2cm} %поле снизу
+\geometry{left=2cm} %поле справа
+\geometry{right=2cm}
+\usepackage{graphicx}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+
+\begin{document}
+\section*{1 вариант} 
+\subsection{}
+
+ 
+ 
+\end{document}
