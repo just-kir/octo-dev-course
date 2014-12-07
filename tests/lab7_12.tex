@@ -1,0 +1,202 @@
+%%% Поля и разметка страницы %%%
+\documentclass[a4paper,12pt]{article}
+\usepackage{lscape}		% Для включения альбомных страниц
+\pagestyle{empty}		% Не нумеровать
+\usepackage[left=2cm,right=2cm,
+top=3cm,bottom=1.5cm,bindingoffset=0cm]{geometry} % поля
+
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc}				% Поддержка русских букв
+\usepackage[utf8]{inputenc}				% Кодировка utf8
+\usepackage[english, russian]{babel}	% Языки: русский, английский
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst} % Красная строка
+
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage{listings}
+
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%%% Таблицы %%%
+\usepackage{longtable}					% Длинные таблицы
+\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+\usepackage{multicol}
+
+%%% Общее форматирование
+\usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
+\usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}
+
+%%% Библиография %%%
+\usepackage{cite} % Красивые ссылки на литературу
+
+%%% Гиперссылки %%%
+\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+\definecolor{linkcolor}{rgb}{0.9,0,0}
+\definecolor{citecolor}{rgb}{0,0.6,0}
+\definecolor{urlcolor}{rgb}{0,0,1}
+\hypersetup{
+    colorlinks, linkcolor={linkcolor},
+    citecolor={citecolor}, urlcolor={urlcolor}
+}
+
+%%% Изображения %%%
+\usepackage{graphicx}		% Подключаем пакет работы с графикой
+\graphicspath{{images/}}	% Пути к изображениям
+
+%%% Выравнивание и переносы %%%
+\sloppy					% Избавляемся от переполнений
+\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+
+%%% Библиография %%%
+\makeatletter
+\bibliographystyle{utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Колонтитулы %%%
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\renewcommand{\@oddhead}{\it \vbox{\hbox to \textwidth%
+		{\hfil Информатика и ИКТ, 11 класс\hfil\strut}\hbox to \textwidth%
+		{\today \hfil Физтех-лицей\strut}\hrule}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+\Large{\textbf{Лабораторная работа по графике №1, 8 декабря}}
+\end{center}
+В этой работе вы будете учиться работать с графикой в python. Это потребуется нам для визуализации результатов, которые мы получим с помощью физического моделирования.
+
+\section{Matplolib}
+Для визуализации при использовании SciPy часто применяют библиотеку Matplotlib, являющуюся аналогом средств вывода графики MATLAB. Преимущества Matplotlib следующие в том что он использует Python, а значит мы можем задействовать любую из стандартных или других доступных библиотек, он распространяется по свободной лицензии, что так важно ученым и студентам, обладающим обычно небольшим бюджетом для своих изысканий. Также как и Python, поскольку он на нем основан, Matplotlib портируем на многие операционные системы.
+\section{Набор точек}
+Одним из больших преимуществ Matplotlib является та скорость, с которой мы можем построить график и привести первый пример:
+\begin{lstlisting}[language=python]
+import matplotlib.pyplot as plt
+plt.plot([1, 3, 2, 4])
+plt.show()
+\end{lstlisting}
+После выполнения последней строчки, вызывается окно Matplotlib, внутри которого мы видим рисунок, показанный справа, который мы можем сохранить в удобном формате с помощью крайней правой иконки в нижней панели, например, обычном графическом формате PNG. Что же мы построили?
+
+В первой инструкции мы импортировали основной модуль библиотеки для построения графиков под именем plt, именно так наиболее часто сокращается это длинное имя. После того, как мы импортировали модуль, мы можем пользоваться его функциями, здесь мы использовали функцию plot(), которая собственно и строит график, а потом функция show() его нам показывает.
+
+Аргумент, принимаемый функцией plot() это последовательность y-значений. Другой, который мы опустили, стоящий перед y --- это последовательность x-значений. Поскольку его нет, генерируется для четырех указанных y, список из четырех x: [0, 1, 2, 3]. Отсюда и такой график.
+
+
+\section{Функции}
+Естественно использовать две координаты вместе и вместо списков массивы. Давайте построим график какой-нибудь сложной функции, например, $y(t) = t^2 e^{-t^2}$.
+
+\begin{lstlisting}[language=python]
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+def f(t):
+    return t**2*exp(-t**2)
+ 
+t = linspace(0, 3, 51) 
+y = f(t)
+ 
+plt.plot(t, y)
+plt.show()
+\end{lstlisting}
+
+Как видно, код такой же ясный и простой, как полученный с помощью него график. Если функция больше нигде не используется, то можно получить еще более компактный код, задав ее сразу же после определения массива t:
+
+\begin{lstlisting}[language=python]
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y = t**2*exp(-t**2)
+ 
+plt.plot(t, y)
+plt.show()
+\end{lstlisting}
+
+\section{Упражнения}
+Ниже приведены некоторые программы. Ваша задача --- набрать эти программы, посмотреть на результат, после чего вы должны прокомментировать каждую строчку, ясно объясняя, что она делает. Если вы даете комментарий к некоторой функции, нужно описать, что она принимает в аргументы.
+
+\subsection{Украшения}
+\begin{lstlisting}[language=python]
+
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y = t**2*exp(-t**2)
+ 
+plt.plot(t, y, 'g--', label='t^2*exp(-t^2)')
+ 
+plt.axis([0, 3, -0.05, 0.5]) 
+plt.xlabel('t')    
+plt.ylabel('y')  
+plt.title('My first normal plot') 
+plt.legend()       
+ 
+plt.show()
+ 
+\end{lstlisting}
+
+\subsection{Несколько кривых}
+\begin{lstlisting}[language=python]
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y1 = t**2*exp(-t**2)
+y2 = t**4*exp(-t**2)
+ 
+plt.plot(t, y1, label='t^2*exp(-t^2)')
+plt.plot(t, y2, label='t^4*exp(-t^2)')
+ 
+plt.xlabel('t')
+plt.ylabel('y')
+plt.title('Plotting two curves in the same plot')
+plt.legend()
+ 
+plt.show()
+\end{lstlisting}
+
+\subsection{Еще упражнение}
+\begin{lstlisting}[language=python]
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y1 = t**2*exp(-t**2)
+y2 = t**4*exp(-t**2)
+y3 = t**6*exp(-t**2)
+ 
+plt.plot(t, y1, 'g^',    
+         t, y2, 'b--',  
+         t, y3, 'ro-')  
+                         
+ 
+plt.xlabel('t')
+plt.ylabel('y')
+plt.title('Plotting with markers')
+plt.legend(['t^2*exp(-t^2)',
+            't^4*exp(-t^2)',
+            't^6*exp(-t^2)'],    
+            loc='upper left')    
+ 
+plt.show()
+\end{lstlisting}
+
+
+\end{document}
