@@ -1,0 +1,186 @@
+%%% Поля и разметка страницы %%%
+\documentclass[a4paper,12pt]{article}
+\usepackage{lscape}		% Для включения альбомных страниц
+\pagestyle{empty}		% Не нумеровать
+\usepackage[left=2cm,right=2cm,
+top=3cm,bottom=1.5cm,bindingoffset=0cm]{geometry} % поля
+
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc}				% Поддержка русских букв
+\usepackage[utf8]{inputenc}				% Кодировка utf8
+\usepackage[english, russian]{babel}	% Языки: русский, английский
+
+
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst} % Красная строка
+
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage{listings}
+
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%%% Таблицы %%%
+\usepackage{longtable}					% Длинные таблицы
+\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+\usepackage{multicol}
+
+%%% Общее форматирование
+\usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
+\usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}
+
+%%% Библиография %%%
+\usepackage{cite} % Красивые ссылки на литературу
+
+%%% Гиперссылки %%%
+\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+\definecolor{linkcolor}{rgb}{0.9,0,0}
+\definecolor{citecolor}{rgb}{0,0.6,0}
+\definecolor{urlcolor}{rgb}{0,0,1}
+\hypersetup{
+    colorlinks, linkcolor={linkcolor},
+    citecolor={citecolor}, urlcolor={urlcolor}
+}
+
+%%% Изображения %%%
+\usepackage{graphicx}		% Подключаем пакет работы с графикой
+\graphicspath{{images/}}	% Пути к изображениям
+
+%%% Выравнивание и переносы %%%
+\sloppy					% Избавляемся от переполнений
+\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+
+%%%Оформление блоков кода %%%
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+%%% Библиография %%%
+\makeatletter
+\bibliographystyle{utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Колонтитулы %%%
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\renewcommand{\@oddhead}{\it \vbox{\hbox to \textwidth%
+		{\hfil Информатика и ИКТ, 11 класс\hfil\strut}\hbox to \textwidth%
+		{\today \hfil Физтех-лицей\strut}\hrule}}
+\makeatother
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+\Large{\textbf{Лабораторная работа по графике №2, 26 декабря}}
+\end{center}
+В этой работе мы продолжим учиться работать с графикой в python. Теперь не будет поясняющих примеров. Вам до всего нужно будет догадаться самостоятельно :-) Правила такие же, как и в предыдущей контрольной работе. Вам дается код программы, вы его набираете, смотрите, что получается и комментируете каждую строчку. После выполнения присылаете в { \bfseries одном файле } все упражнения на почты $dontwritehim@gmail.com$ и $i\_khisambeev@mail.ru$.
+
+\section{Первое упражение --- гистограмма}
+\begin{lstlisting}[language=python]
+import matplotlib.pyplot as plt
+import numpy as np
+ 
+y = np.random.randn(1000)
+ 
+plt.hist(y, 25)
+plt.show()
+\end{lstlisting}
+Вам нужно догадаться, что делает функция $randn$. Это не просто случайные числа. Можете попробовать заполучить подсказку у Ильдара :-)
+
+
+
+\section{Второе упражение: учет ошибок}
+В практической науке, эксперимент даже при максимальной точности измерений всегда вносит свою погрешность. Для того, чтобы учесть это и указать возможный разброс вокруг значения, считаемого истинным, вводят error bars, которые на кривой для полученных точек показывают своеобразный доверительный интервал:
+\begin{lstlisting}[language=python]
+import matplotlib.pyplot as plt
+import numpy as np
+ 
+x = np.arange(0, 4, 0.2)
+y = np.exp(-x)
+e1 = 0.1 * np.abs(np.random.randn(len(y)))
+ 
+plt.errorbar(x, y, yerr=e1, fmt='.-')
+plt.show()
+\end{lstlisting}
+Особенно тщательно разберитесь с тем, как работает $np.arange$. Можно воспользоваться гуглом ;-)
+
+\section{Третье упражнение: круговая диаграмма}
+Такой вид диаграмм используется, когда для нас существенно сравнение вклада каждого участника в общее дело. Поскольку это дело похоже на разрезание пирога, то и диаграммы также называют pie charts, а функцию pie(). Первым аргументом она принимает x-последовательность из внесенных единиц.
+\begin{lstlisting}[language=python]
+import matplotlib.pyplot as plt
+ 
+plt.figure(figsize=(7,5))
+x = [18, 15, 11, 9, 8, 6]
+labels = ['Java', 'C', 'C++', 'PHP', '(Visual) Basic', 'Python']
+explode = [0, 0, 0, 0, 0, 0.2]
+ 
+plt.pie(x, labels = labels, explode = explode, autopct = '%1.1f%%', shadow=True);
+plt.show()
+\end{lstlisting}
+Кстати, эта статистика уже давно неверная. 
+
+\section{Четвертое упражнение: график рассеяния}
+Такой тип графиков позволяет изображать одновременно два множества данных, которые не образуют кривой, а именно двухмерное множество точек. Каждая точка имеет две координаты. График рассеяния часто используется для определения связи между двумя величинами и позволяет определить более точные пределы измерений.
+\begin{lstlisting}[language=python]
+import matplotlib.pyplot as plt
+import numpy as np
+ 
+x = np.random.randn(1000)
+y = np.random.randn(1000)
+ 
+size = 50*np.random.randn(1000)
+colors = np.random.rand(1000)
+ 
+plt.scatter(x, y, s=size, c=colors)
+plt.show()
+\end{lstlisting}
+
+\section{Пятое упражнение: полярные координаты}
+Кроме наиболее часто используемой декартовой системы координат, довольно широко применяется и полярная система координат, удобная в различных радиальных задачах, координаты точек в ней задается с помощью радиус-вектора $\rho$, идущего из начала координат и угла $\theta$. Угол может быть задан в радианах или градусах, matplotlib использует градусы.
+\begin{lstlisting}[language=python]
+import matplotlib.pyplot as plt
+import numpy as np
+ 
+theta = np.arange(0., 2., 1./180.)*np.pi    
+ 
+plt.polar(3*theta, theta/5)        
+plt.polar(theta, np.cos(4*theta))  
+plt.polar(theta, [1.4]*len(theta))  
+ 
+plt.show()
+\end{lstlisting}
+\end{document}

@@ -1,14 +1,4 @@
 import matplotlib.pyplot as plt
-
-f = open("energy.txt", "r")
-a = []
-
-#######
-l = f.readline()
-l = (l[0:len(l)-1])
-l = float(l)
-a.append(l)
-#######
-
-f.close()  
-print a
+plt.plot([1,2,3,4], [1,4,9,16], 'ro')
+plt.axis([0, 6, 0, 20])
+plt.show()

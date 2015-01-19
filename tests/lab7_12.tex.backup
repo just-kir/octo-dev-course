@@ -71,14 +71,14 @@ top=3cm,bottom=1.5cm,bindingoffset=0cm]{geometry} % поля
 \makeatletter
 \newcommand*{\currentname}{\@currentlabelname}
 \renewcommand{\@oddhead}{\it \vbox{\hbox to \textwidth%
-		{\hfil Информатика и ИКТ, 11 класс\hfil\strut}\hbox to \textwidth%
+		{\hfil Информатика и ИКТ, 10 класс\hfil\strut}\hbox to \textwidth%
 		{\today \hfil Физтех-лицей\strut}\hrule}}
 \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \begin{center}
-\Large{\textbf{Лабораторная работа 8 декабря}}
+\Large{\textbf{Лабораторная работа по графике №1, 15 декабря}}
 \end{center}
 В этой работе вы будете учиться работать с графикой в python. Это потребуется нам для визуализации результатов, которые мы получим с помощью физического моделирования.
 
@@ -127,4 +127,76 @@ y = t**2*exp(-t**2)
 plt.plot(t, y)
 plt.show()
 \end{lstlisting}
+
+\section{Упражнения}
+Ниже приведены некоторые программы. Ваша задача --- набрать эти программы, посмотреть на результат, после чего вы должны прокомментировать каждую строчку, ясно объясняя, что она делает. Если вы даете комментарий к некоторой функции, нужно описать, что она принимает в аргументы.
+
+\subsection{Украшения}
+\begin{lstlisting}[language=python]
+
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y = t**2*exp(-t**2)
+ 
+plt.plot(t, y, 'g--', label='t^2*exp(-t^2)')
+ 
+plt.axis([0, 3, -0.05, 0.5]) 
+plt.xlabel('t')    
+plt.ylabel('y')  
+plt.title('My first normal plot') 
+plt.legend()       
+ 
+plt.show()
+ 
+\end{lstlisting}
+
+\subsection{Несколько кривых}
+\begin{lstlisting}[language=python]
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y1 = t**2*exp(-t**2)
+y2 = t**4*exp(-t**2)
+ 
+plt.plot(t, y1, label='t^2*exp(-t^2)')
+plt.plot(t, y2, label='t^4*exp(-t^2)')
+ 
+plt.xlabel('t')
+plt.ylabel('y')
+plt.title('Plotting two curves in the same plot')
+plt.legend()
+ 
+plt.show()
+\end{lstlisting}
+
+\subsection{Еще упражнение}
+\begin{lstlisting}[language=python]
+from numpy import *
+import matplotlib.pyplot as plt
+ 
+t = linspace(0, 3, 51)
+y1 = t**2*exp(-t**2)
+y2 = t**4*exp(-t**2)
+y3 = t**6*exp(-t**2)
+ 
+plt.plot(t, y1, 'g^',    
+         t, y2, 'b--',  
+         t, y3, 'ro-')  
+                         
+ 
+plt.xlabel('t')
+plt.ylabel('y')
+plt.title('Plotting with markers')
+plt.legend(['t^2*exp(-t^2)',
+            't^4*exp(-t^2)',
+            't^6*exp(-t^2)'],    
+            loc='upper left')    
+ 
+plt.show()
+\end{lstlisting}
+
+
 \end{document}
