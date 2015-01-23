@@ -1,0 +1,138 @@
+%%% Поля и разметка страницы %%%
+\documentclass[a4paper,12pt]{article}
+\usepackage{lscape}		% Для включения альбомных страниц
+\pagestyle{empty}		% Не нумеровать
+\usepackage[left=2cm,right=2cm,
+top=3cm,bottom=1.5cm,bindingoffset=0cm]{geometry} % поля
+
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap}						% Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc}				% Поддержка русских букв
+\usepackage[utf8]{inputenc}				% Кодировка utf8
+\usepackage[english, russian]{babel}	% Языки: русский, английский
+
+
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst} % Красная строка
+
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage{listings}
+
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%%% Таблицы %%%
+\usepackage{longtable}					% Длинные таблицы
+\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+\usepackage{multicol}
+
+%%% Общее форматирование
+\usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
+\usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}
+
+%%% Библиография %%%
+\usepackage{cite} % Красивые ссылки на литературу
+
+%%% Гиперссылки %%%
+\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+\definecolor{linkcolor}{rgb}{0.9,0,0}
+\definecolor{citecolor}{rgb}{0,0.6,0}
+\definecolor{urlcolor}{rgb}{0,0,1}
+\hypersetup{
+    colorlinks, linkcolor={linkcolor},
+    citecolor={citecolor}, urlcolor={urlcolor}
+}
+
+%%% Изображения %%%
+\usepackage{graphicx}		% Подключаем пакет работы с графикой
+\graphicspath{{images/}}	% Пути к изображениям
+
+%%% Выравнивание и переносы %%%
+\sloppy					% Избавляемся от переполнений
+\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
+
+%%%Оформление блоков кода %%%
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+%%% Библиография %%%
+\makeatletter
+\bibliographystyle{utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Колонтитулы %%%
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\renewcommand{\@oddhead}{\it \vbox{\hbox to \textwidth%
+		{\hfil Информатика и ИКТ, 11 класс\hfil\strut}\hbox to \textwidth%
+		{\today \hfil Физтех-лицей\strut}\hrule}}
+\makeatother
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+\Large{\textbf{Контрольная работа, 22 января}}
+\end{center}
+\section{Космическая разминка}
+Спутник запускается на круговую орбиту Земли таким образом, что его период обращения вкоруг Земли составляет $T$ секунд.
+\begin{itemize}
+\item Показать, что его высота над поверхностью Земли дается формулой:
+$$h =  \left( \frac{\gamma M T^2}{4\pi^2} \right)^{1/3} - R,$$
+где $\gamma = 6.67 \cdot 10^{-11} m^3 kg^{-1} s^{-2}$ --- гравитационная постоянная, $M = 5.97 \cdot 10^{24} kg$ --- масса Земли и $R = 6371 km$ --- радиус Земли.
+\item Написать функцию, которая принимает в качестве параметра $T$ --- период обращения и выдает в качестве результата высоту, на которую необходимо запустить спутник.
+\end{itemize}
+\section{Чужой код}
+Что делает представленная программа? Подробно напишите алгоритм, по которому она работает. Можете ли вы ускорить программу? Что для этого нужно изменить?
+\begin{lstlisting}[language=python]
+def fun(n):
+  flst = []
+  k = 2
+  while k <= n:
+  	while n%k == 0:
+  	  flst.append(k)
+  	  n =n / k
+  	k +=1
+  return flst
+\end{lstlisting}
+\section{Простой маятник}
+В этой задаче вам нужно промоделировать движение простого математического маятника. Пусть $l$ --- длина нити, $g$ --- ускорение свободного падения, а $m$ --- масса предмета. Тогда второй закон Ньютона дает:
+$$m \vec{a} = -m \vec{g} \sin \alpha .$$
+Считая $\alpha$ малым, легко получается дифференциальное уравнение второго порядка для отклонения маятника от положения равновесия:
+$$\ddot{\alpha} + \frac{g}{l} \alpha = 0 .$$
+Ваша нужно построить график зависимости угла отклонения от времени. В качестве начальных данные выберите $l$ = 1,  $\alpha_0 = 0.1 \frac{\pi}{4}$ --- начальный угол отклонения, $v_0 = 0$ ---начальная скорость, $t = 4 s$ --- время, в течении которого будет колебаться ваш маятник и шаг $\Delta t = 0.001$. 
+
+\end{document}
